@@ -6,22 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Configuration\ClientConfiguration.fs" />
-    <Compile Include="Configuration\GlobalDependency.fs" />
-    <Compile Include="CompositionRoot.fs" />
+    <Compile Include="PushHandler.fs" />
+    <Compile Include="RequestHandler.fs" />
+    <Compile Include="CommandHandler.fs" />
+    <Compile Include="KafkaMessageHandler.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
-    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
+    <PackageReference Include="System.Threading.Tasks.Dataflow" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ChatApp.Client.Contracts\ChatApp.Client.Contracts.csproj" />
     <ProjectReference Include="..\ChatApp.Client.Core\ChatApp.Client.Core.fsproj" />
     <ProjectReference Include="..\ChatApp.Client.Database\ChatApp.Client.Database.fsproj" />
-    <ProjectReference Include="..\ChatApp.Client.Handlers\ChatApp.Client.Handlers.fsproj" />
-    <ProjectReference Include="..\ChatApp.Client.Infrastructure.KafkaConsumer\ChatApp.Client.Infrastructure.KafkaConsumer.csproj" />
   </ItemGroup>
 
 </Project>

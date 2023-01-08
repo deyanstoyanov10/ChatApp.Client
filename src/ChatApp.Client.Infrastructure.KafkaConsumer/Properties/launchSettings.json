@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ChatApp.Client.Infrastructure.KafkaConsumer": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59429;http://localhost:59430"
+    }
+  }
+}

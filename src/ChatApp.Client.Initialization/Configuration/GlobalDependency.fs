@@ -1,7 +1,9 @@
 ﻿namespace ChatApp.Client.Initialization.Configuration
 
-open Serilog
 open ChatApp.Client
+open ChatApp.Client.Core
+
+open Serilog
 open Confluent.Kafka
 
 type GlobalDependency = {
@@ -9,6 +11,7 @@ type GlobalDependency = {
     ClientConfiguration: ClientConfiguration
     KeyDeserializer: IDeserializer<string>
     MessageValueDeserializer: IDeserializer<Contracts.Message>
+    PushClientConfiguration : PushClientConfiguration
 } with
   static member Create
    (logger: ILogger,
@@ -19,5 +22,6 @@ type GlobalDependency = {
     ClientConfiguration = clientConfiguration
     KeyDeserializer = keyDeserializer
     MessageValueDeserializer = messageValueDeserializer
+    PushClientConfiguration = clientConfiguration.pushClientConfiguration
     }
 

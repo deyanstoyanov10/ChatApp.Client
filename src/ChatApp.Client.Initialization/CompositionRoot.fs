@@ -1,23 +1,36 @@
 ﻿namespace ChatApp.Client.Initialization
 
+open ChatApp.Client.Database
+open ChatApp.Client.Handlers
+
 open ChatApp.Client.Initialization.Configuration
 open ChatApp.Client.Infrastructure.KafkaConsumer
 
-open Microsoft.Extensions.Logging
-
 type Services = {
     MessageKafkaConsumer: MessageKafkaConsumer
+    CommandHandler: CommandHandler
 }
 
 type CompositionRoot(dep: GlobalDependency) =
     
     let logger = dep.Logger.ForContext<CompositionRoot>()
 
-    let createMessageKafkaConsumer() =
+    let createDatabase() =
+        Database()
+
+    let createCommandHandler database =
+        CommandHandler(database)
+
+    let createKafkaMessageHandler commandHandler =
+        KafkaMessageHandler(commandHandler)
+
+    let createMessageKafkaConsumer(kafkaMessageHandler: KafkaMessageHandler) =
         let consumer = new MessageKafkaConsumer(dep.ClientConfiguration.kafkaConsumerConfig, dep.KeyDeserializer, dep.MessageValueDeserializer)
 
         consumer.add_OnMessageReceived(fun message ->
-            logger.Information("Message Received Key: {key}", message.Key)
+            message.Value
+            |> MessageReceived
+            |> kafkaMessageHandler.HandleKafkaEvent
         )
 
         consumer.add_OnError(fun error ->
@@ -29,10 +42,14 @@ type CompositionRoot(dep: GlobalDependency) =
         )
         consumer
 
-    let _messageKafkaConsumer = createMessageKafkaConsumer()
+    let _database = createDatabase()
+    let _commandHandler = createCommandHandler(_database)
+    let _kafkaMessageHandler = createKafkaMessageHandler(_commandHandler)
+    let _messageKafkaConsumer = createMessageKafkaConsumer(_kafkaMessageHandler)
 
     let services = {
         Services.MessageKafkaConsumer = _messageKafkaConsumer
+        Services.CommandHandler = _commandHandler
     }
 
     let start (services: Services) =
@@ -40,6 +57,8 @@ type CompositionRoot(dep: GlobalDependency) =
 
     let stop (services: Services) =
         services.MessageKafkaConsumer.Dispose()
+
+    member _.Services = services
 
     member _.Start() =
         start services

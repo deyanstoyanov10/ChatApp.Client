@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Client.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Client.Contracts", "..\ChatApp.Client.Contracts\ChatApp.Client.Contracts.csproj", "{D7E7CFC0-D8E4-4C59-B295-1028541E64B8}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ChatApp.Client.Initialization", "..\ChatApp.Client.Initialization\ChatApp.Client.Initialization.fsproj", "{15CEFF96-9585-4263-B807-7296BE6FF65E}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "ChatApp.Client.Initialization", "..\ChatApp.Client.Initialization\ChatApp.Client.Initialization.fsproj", "{15CEFF96-9585-4263-B807-7296BE6FF65E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ChatApp.Client.Handlers", "..\ChatApp.Client.Handlers\ChatApp.Client.Handlers.fsproj", "{A760850F-6FA3-4924-A0E0-537D19012890}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ChatApp.Client.Core", "..\ChatApp.Client.Core\ChatApp.Client.Core.fsproj", "{C39FA945-EE40-4C2F-96C9-30E78D81D585}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ChatApp.Client.Database", "..\ChatApp.Client.Database\ChatApp.Client.Database.fsproj", "{9B674D9A-4D4E-4AB7-81B9-97CFD0309BB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +41,18 @@ Global
 		{15CEFF96-9585-4263-B807-7296BE6FF65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15CEFF96-9585-4263-B807-7296BE6FF65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15CEFF96-9585-4263-B807-7296BE6FF65E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A760850F-6FA3-4924-A0E0-537D19012890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A760850F-6FA3-4924-A0E0-537D19012890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A760850F-6FA3-4924-A0E0-537D19012890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A760850F-6FA3-4924-A0E0-537D19012890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C39FA945-EE40-4C2F-96C9-30E78D81D585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C39FA945-EE40-4C2F-96C9-30E78D81D585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C39FA945-EE40-4C2F-96C9-30E78D81D585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C39FA945-EE40-4C2F-96C9-30E78D81D585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B674D9A-4D4E-4AB7-81B9-97CFD0309BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B674D9A-4D4E-4AB7-81B9-97CFD0309BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B674D9A-4D4E-4AB7-81B9-97CFD0309BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B674D9A-4D4E-4AB7-81B9-97CFD0309BB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

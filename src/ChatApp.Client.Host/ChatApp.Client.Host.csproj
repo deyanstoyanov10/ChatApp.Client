@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChatApp.Client.Contracts\ChatApp.Client.Contracts.csproj" />
+    <ProjectReference Include="..\ChatApp.Client.Core\ChatApp.Client.Core.fsproj" />
     <ProjectReference Include="..\ChatApp.Client.Initialization\ChatApp.Client.Initialization.fsproj" />
   </ItemGroup>
 

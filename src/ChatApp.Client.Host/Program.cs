@@ -4,6 +4,8 @@ using ChatApp.Client.Initialization.Configuration;
 using ChatApp.Client.Infrastructure.KafkaConsumer;
 
 using Confluent.Kafka;
+using ChatApp.Client.Host.Hubs;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,21 @@ builder.Services
     .AddHostedService<ClientHostedService>()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
+    .AddSignalR().Services
+    .AddSingleton(typeof(ChatHub))
     .AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MySignalRPolicy", config =>
+    {
+        config.WithOrigins("https://localhost:7213/");
+        config.AllowAnyMethod();
+        config.AllowAnyHeader();
+        config.SetIsOriginAllowed((x) => true);
+        config.AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
@@ -27,7 +43,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors("MySignalRPolicy");
+app.MapHub<ChatHub>("/Websocket");
 
 app.MapControllers();
 
